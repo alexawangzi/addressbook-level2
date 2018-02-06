@@ -17,10 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.ReadOnlyFileSystemException;
+import java.nio.file.*;
 
 /**
  * Represents the file used to store address book data.
@@ -106,12 +103,12 @@ public class StorageFile {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
 
-        } catch (IOException ioe) {
+        }catch(AccessDeniedException roe) {
+            throw new StorageOperationException("Error writing to file, you do not have write access to storage file");
+        }catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
-        } catch (ReadOnlyFileSystemException roe) {
-            throw new StorageOperationException("Error writing to file, you do not have write access to storage file");
         }
     }
 
