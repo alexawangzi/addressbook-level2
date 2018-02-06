@@ -27,6 +27,7 @@ public class StorageFile {
     /** Default file path used if the user doesn't provide the file name. */
     public static final String DEFAULT_STORAGE_FILEPATH = "addressbook.xml";
 
+
     /* Note: Note the use of nested classes below.
      * More info https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
      */
@@ -104,9 +105,9 @@ public class StorageFile {
             marshaller.marshal(toSave, fileWriter);
 
         }catch(AccessDeniedException roe) {
-            throw new StorageOperationException("Error writing to file, you do not have write access to storage file");
+            throw new StorageOperationException("Error writing to file, the file is read-only");
         }catch (IOException ioe) {
-            throw new StorageOperationException("Error writing to file: " + path);
+            throw new StorageOperationException("Error writing to file, the file is read-only");
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
         }
