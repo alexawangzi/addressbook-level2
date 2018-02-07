@@ -9,14 +9,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.*;
 
 /**
@@ -104,12 +97,18 @@ public class StorageFile {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
 
-        }catch(AccessDeniedException roe) {
-            throw new StorageOperationException("Error writing to file, the file is read-only");
-        }catch (IOException ioe) {
-            throw new StorageOperationException("Error writing to file, the file is read-only");
+        } catch (IOException ioe) {
+            checkIfFileIsReadOnly();
+            throw new StorageOperationException("Error writing to file: " +path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
+        }
+    }
+
+    private void checkIfFileIsReadOnly() throws StorageOperationException {
+        File file= path.toFile();
+        if(file.canRead()&&!file.canWrite()){
+            throw new StorageOperationException("Error writing to file: "+path +", the file is read-only");
         }
     }
 

@@ -24,7 +24,6 @@ public class Main {
 
     /** Version info of the program. */
     public static final String VERSION = "AddressBook Level 2 - Version 1.0";
-    public static final String MESSAGE_FILE_READ_ONLY ="Error writing to file, the file is read-only";
 
     private TextUi ui;
     private StorageFile storage;
@@ -122,7 +121,7 @@ public class Main {
     }
 
     private boolean checkIfFileIsReadOnly(Exception e) {
-        return e.getMessage().equals(MESSAGE_FILE_READ_ONLY);
+        return e.getMessage().contains("read-only");
     }
 
     /**
