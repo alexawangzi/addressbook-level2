@@ -14,6 +14,7 @@ public interface ReadOnlyPerson {
     Email getEmail();
     Address getAddress();
 
+
     /**
      * Returns a new TagList that is a deep copy of the internal TagList,
      * changes on the returned list will not affect the person's internal tags.
@@ -94,4 +95,7 @@ public interface ReadOnlyPerson {
         }
         return builder.toString();
     }
+
+
+
 }

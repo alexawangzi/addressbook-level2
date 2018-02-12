@@ -75,8 +75,8 @@ public class AddCommand extends Command {
     }
 
 
-    public List listAfterAdd(){
 
+    public List listAfterAdd(){
         ListCommand listAfterAdd=new ListCommand();
         listAfterAdd.setData(addressBook, relevantPersons);
         return listAfterAdd.executeListAfterAdd();

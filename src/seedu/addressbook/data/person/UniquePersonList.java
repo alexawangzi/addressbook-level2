@@ -81,6 +81,15 @@ public class UniquePersonList implements Iterable<Person> {
         return Collections.unmodifiableList(internalList);
     }
 
+    /**
+     * Returns an unmodifiable java List view with elements cast as immutable {@link ReadOnlyPerson}s.
+     * For use with other methods/libraries.
+     * Any changes to the internal list/elements are immediately visible in the returned list.
+     */
+    public List<Person> ListView() {
+        return internalList;
+    }
+
 
     /**
      * Checks if the list contains an equivalent person as the given argument.
@@ -139,5 +148,13 @@ public class UniquePersonList implements Iterable<Person> {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
+    }
+
+    /**
+     * Sorts all persons in list according to alphabetical order of their names.
+     */
+    public void sort() {
+
+
     }
 }

@@ -139,7 +139,16 @@
   # listing indexes get updated on next request
   delete 1
   list
+##########################################################
+# test sort persons command
+##########################################################
 
+  # should add new entry into address book
+  add Adam Brown p/111111 e/adam@gmail.com a/111, alpha street
+
+  # should sort all people in address book
+  sort
+  
 ##########################################################
 # test clear command
 ##########################################################
