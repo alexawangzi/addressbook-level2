@@ -34,7 +34,7 @@ Format: `help`
 > Help is also shown if you enter an incorrect command e.g. `abcd`
  
 ### Adding a person: `add`
-Adds a person to the address book<br>
+Adds a person to the address book, automatically list entries after addition<br>
 Format: `add NAME [p]p/PHONE_NUMBER [p]e/EMAIL [p]a/ADDRESS [t/TAG]...` 
  
 > Words in `UPPER_CASE` are the parameters, items in `SQUARE_BRACKETS` are optional, 
@@ -52,6 +52,10 @@ Examples:
 ### Listing all persons : `list`
 Shows a list of all persons in the address book.<br>
 Format: `list`
+
+### Sorting all persons : `sort`
+Shows a sorted list of all persons in the address book according to their names in alphabetical order.<br>
+Format: `sort`
 
 ### Finding all persons containing any keyword in their name: `find`
 Finds persons whose names contain any of the given keywords.<br>
