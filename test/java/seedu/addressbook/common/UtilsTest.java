@@ -45,24 +45,34 @@ public class UtilsTest {
     }
 
     @Test
-    public void isAnyNull() throws Exception {
-        //empty
-        assertNoNull();
-
-        //all object null
-        assertSomeNull(null,null,null,null);
-
-        //one or more object null
-        assertSomeNull((Object)null);
-        assertSomeNull("abc","ab",null,null);
-        assertSomeNull("abc",null,null,null);
-        assertSomeNull(1,"abc",'a',new Double(1.0),null);
+    public void isAnyNull_noNull_returnFalse() throws Exception {
 
         //all objects not null
         assertNoNull("abc");
         assertNoNull(1);
         assertNoNull(1,"abc",'a',new Double(1.0));
 
+    }
+
+    @Test
+    public void isAnyNull_Empty_returnFalse() throws Exception {
+        //empty
+        assertNoNull();
+    }
+
+    @Test
+    public void isAnyNull_allNull_returnTrue() throws Exception {
+        //all object null
+        assertSomeNull(null, null, null, null);
+    }
+
+    @Test
+    public void isAnyNull_oneOrMoreNull_returnTrue() throws Exception {
+        //one or more object null
+        assertSomeNull((Object) null);
+        assertSomeNull("abc", "ab", null, null);
+        assertSomeNull("abc", null, null, null);
+        assertSomeNull(1, "abc", 'a', new Double(1.0), null);
     }
 
     private void assertSomeNull(Object...objects) {
